@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/13"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="utng.gtid2.ajmc.controlador.EquipoController"
+            prefWidth="1200" prefHeight="750"
+            style="-fx-background-color:#2b2b2b;">
+
+    <top>
+        <Label text="Gestión de Materiales" textFill="WHITE"
+               style="-fx-background-color:#3b3b3b;-fx-font-weight:bold;">
+            <font><Font size="24"/></font>
+            <padding><Insets top="15" bottom="15" left="20"/></padding>
+        </Label>
+    </top>
+
+    <left>
+        <VBox spacing="12" prefWidth="340" style="-fx-background-color:#f3f3f3;">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+            <Label text="Código"/>
+            <TextField fx:id="txtCodigo"/>
+
+            <Label text="Nombre"/>
+            <TextField fx:id="txtNombre"/>
+
+            <Label text="Tipo"/>
+            <ComboBox fx:id="cmbTipo"/>
+
+            <Label text="Responsable"/>
+            <ComboBox fx:id="cbResponsable"/>
+
+            <Label text="Estado"/>
+            <ComboBox fx:id="cbEstado"/>
+
+            <Label text="Descripción"/>
+            <TextArea fx:id="txtDescripcion" prefRowCount="3"/>
+
+            <HBox spacing="8">
+                <Button fx:id="btnGuardar" text="Guardar" onAction="#guardar"/>
+                <Button fx:id="btnModificar" text="Modificar" onAction="#modificar"/>
+            </HBox>
+
+            <HBox spacing="8">
+                <Button fx:id="btnDarBaja" text="Dar de baja" onAction="#mostrarPanelBaja"/>
+                <Button fx:id="btnLimpiar" text="Limpiar" onAction="#limpiarFormulario"/>
+            </HBox>
+
+            <TitledPane fx:id="panelBaja" text="Registrar baja" expanded="false">
+                <VBox spacing="8">
+                    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                    <Label text="Motivo"/>
+                    <ComboBox fx:id="cbMotivoBaja"/>
+                    <Label text="Observaciones"/>
+                    <TextArea fx:id="txtObservacionesBaja" prefRowCount="2"/>
+                    <Button fx:id="btnConfirmarBaja" text="Confirmar baja" onAction="#confirmar"/>
+                </VBox>
+            </TitledPane>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="10" style="-fx-background-color:#f3f3f3;">
+            <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+            <HBox spacing="10">
+                <TextField fx:id="txtBuscar" promptText="Buscar por código o nombre..." HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnBuscar" text="Buscar" onAction="#buscarEquipo"/>
+            </HBox>
+
+            <TableView fx:id="tblEquipos" VBox.vgrow="ALWAYS">
+                <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+                <columns>
+                    <TableColumn fx:id="colId" text="ID"/>
+                    <TableColumn fx:id="colCodigo" text="Código"/>
+                    <TableColumn fx:id="colNombre" text="Nombre"/>
+                    <TableColumn fx:id="colTipo" text="Tipo"/>
+                    <TableColumn fx:id="colResponsable" text="Responsable"/>
+                    <TableColumn fx:id="colEstado" text="Estado"/>
+                    <TableColumn fx:id="colFechaRegistro" text="Fecha Registro"/>
+                </columns>
+            </TableView>
+
+            <Label fx:id="lblEquipoSeleccionado" text="Ningún equipo seleccionado"/>
+        </VBox>
+    </center>
+
+</BorderPane>
